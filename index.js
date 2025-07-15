@@ -3,9 +3,9 @@ const { connectDatabase, disconnectDatabase } = require('./src/db/db');
 const dotenv = require('dotenv');
 const cors = require("cors");
 const morgan = require("morgan");
-// const routes = require('./src/routes/routes');
 dotenv.config();
 const path = require("path");
+const routes = require('./src/routes/routes');
 
 const app = express();
 
@@ -16,8 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes
-app.use("/getFiles", express.static(path.join(__dirname, "")));
-// app.use('/', routes);
+app.use('/', routes);
 app.get("/", (request, response) => {
     response.status(200).json({
         message: "TO DO LIST backend running successfully",
